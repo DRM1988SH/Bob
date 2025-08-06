@@ -6,24 +6,30 @@
     <title>نظام إدارة المختبرات البيطرية | Veterinary Lab Management System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
     <style>
         :root {
-            --primary-color: #2c786c;
-            --secondary-color: #ff9a3c;
-            --accent-color: #004445;
-            --light-color: #f8f5f1;
-            --dark-color: #333;
-            --success-color: #28a745;
-            --danger-color: #dc3545;
-            --warning-color: #fd7e14;
+            --primary-color: #3a7d7d;
+            --secondary-color: #6b9e9e;
+            --accent-color: #2d5d5d;
+            --light-color: #f5f9f9;
+            --dark-color: #3a3a3a;
+            --success-color: #4caf50;
+            --danger-color: #f44336;
+            --warning-color: #ff9800;
+            --text-color: #333;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
         }
 
         body {
             font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f5f5;
-            color: var(--dark-color);
-            transition: all 0.3s;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            transition: var(--transition);
+            line-height: 1.6;
         }
 
         .welcome-screen {
@@ -35,12 +41,16 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            padding: 20px;
+            background-image: linear-gradient(135deg, #3a7d7d 0%, #2d5d5d 100%);
         }
 
         .welcome-logo {
-            font-size: 4rem;
+            font-size: 5rem;
             margin-bottom: 2rem;
             animation: pulse 2s infinite;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
         @keyframes pulse {
@@ -49,13 +59,31 @@
             100% { transform: scale(1); }
         }
 
+        .welcome-screen h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .welcome-screen p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
         .login-container {
             background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            width: 400px;
-            max-width: 90%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2.5rem;
+            width: 420px;
+            max-width: 95%;
+            transition: var(--transition);
+        }
+
+        .login-container:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
         }
 
         .dashboard {
@@ -69,25 +97,36 @@
             height: 100vh;
             position: fixed;
             width: 250px;
-            transition: all 0.3s;
+            transition: var(--transition);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
         }
 
         .sidebar-header {
             padding: 1.5rem;
             background-color: rgba(0, 0, 0, 0.1);
             text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-header h3 {
+            margin: 0;
+            font-weight: 600;
         }
 
         .sidebar-menu {
             padding: 0;
             list-style: none;
+            margin-top: 1rem;
         }
 
         .sidebar-menu li {
-            padding: 0.75rem 1.5rem;
+            padding: 0.85rem 1.5rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
         }
 
         .sidebar-menu li:hover {
@@ -96,64 +135,96 @@
         }
 
         .sidebar-menu li.active {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.15);
             border-right: 4px solid var(--secondary-color);
         }
 
         .sidebar-menu li i {
             margin-left: 10px;
+            font-size: 1.1rem;
+            width: 24px;
+            text-align: center;
         }
 
         .main-content {
             margin-right: 250px;
             padding: 2rem;
-            transition: all 0.3s;
+            transition: var(--transition);
         }
 
         .card {
             border: none;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
             margin-bottom: 2rem;
-            transition: all 0.3s;
+            transition: var(--transition);
+            overflow: hidden;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
         }
 
         .card-header {
             background-color: var(--primary-color);
             color: white;
-            border-radius: 10px 10px 0 0 !important;
+            border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
             padding: 1rem 1.5rem;
+            font-weight: 600;
+            border-bottom: none;
+        }
+
+        .card-header h5 {
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-header h5 i {
+            margin-left: 10px;
+        }
+
+        .card-body {
+            padding: 1.5rem;
         }
 
         .btn-primary {
             background-color: var(--primary-color);
             border-color: var(--primary-color);
+            transition: var(--transition);
         }
 
         .btn-primary:hover {
             background-color: var(--accent-color);
             border-color: var(--accent-color);
+            transform: translateY(-2px);
         }
 
         .btn-secondary {
             background-color: var(--secondary-color);
             border-color: var(--secondary-color);
             color: white;
+            transition: var(--transition);
         }
 
         .btn-secondary:hover {
-            background-color: #e07c00;
-            border-color: #e07c00;
+            background-color: #5a8a8a;
+            border-color: #5a8a8a;
+            color: white;
+            transform: translateY(-2px);
         }
 
-        .form-control:focus {
+        .form-control, .form-select {
+            border-radius: var(--border-radius);
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #ddd;
+            transition: var(--transition);
+        }
+
+        .form-control:focus, .form-select:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.25rem rgba(44, 120, 108, 0.25);
+            box-shadow: 0 0 0 0.25rem rgba(58, 125, 125, 0.25);
         }
 
         .nav-tabs .nav-link.active {
@@ -164,11 +235,29 @@
 
         .nav-tabs .nav-link {
             color: var(--dark-color);
+            transition: var(--transition);
+        }
+
+        .table {
+            border-radius: var(--border-radius);
+            overflow: hidden;
         }
 
         .table th {
             background-color: var(--primary-color);
             color: white;
+            font-weight: 500;
+        }
+
+        .table td, .table th {
+            padding: 0.75rem;
+            vertical-align: middle;
+        }
+
+        .badge {
+            font-weight: 500;
+            padding: 0.4em 0.75em;
+            border-radius: 20px;
         }
 
         .badge-success {
@@ -192,6 +281,7 @@
             padding: 1rem;
             text-align: center;
             font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .copyright {
@@ -201,23 +291,24 @@
             width: calc(100% - 250px);
             background-color: var(--dark-color);
             color: white;
-            padding: 0.5rem;
+            padding: 0.75rem;
             text-align: center;
             font-size: 0.8rem;
+            z-index: 99;
         }
 
         .barcode-container {
             text-align: center;
             padding: 2rem;
             background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
             max-width: 500px;
             margin: 0 auto;
         }
 
         .barcode {
-            margin: 1rem 0;
+            margin: 1.5rem 0;
         }
 
         .language-switcher {
@@ -225,6 +316,18 @@
             top: 1rem;
             left: 1rem;
             z-index: 1000;
+        }
+
+        .language-switcher .btn {
+            border-radius: 20px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.8rem;
+        }
+
+        /* Animal icons */
+        .animal-icon {
+            font-size: 1.2rem;
+            margin-left: 5px;
         }
 
         /* RTL specific styles */
@@ -290,6 +393,7 @@
             .sidebar-menu li {
                 text-align: center;
                 padding: 0.75rem 0;
+                justify-content: center;
             }
 
             .sidebar-menu li i {
@@ -342,23 +446,88 @@
         [lang="en"] .arabic {
             display: none;
         }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-color);
+        }
+
+        /* Input group */
+        .input-group-text {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Tab content */
+        .tab-content {
+            padding: 1rem 0;
+        }
+
+        /* List group */
+        .list-group-item {
+            transition: var(--transition);
+        }
+
+        .list-group-item:hover {
+            background-color: var(--light-color);
+        }
+
+        /* Modal */
+        .modal-content {
+            border-radius: var(--border-radius);
+            border: none;
+            box-shadow: var(--box-shadow);
+        }
+
+        /* Print styles */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #barcodeScreen, #barcodeScreen * {
+                visibility: visible;
+            }
+            #barcodeScreen {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: white;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Welcome Screen -->
     <div id="welcomeScreen" class="welcome-screen fade-in">
         <div class="welcome-logo">
-            <i class="fas fa-paw"></i>
+            <i class="fas fa-flask"></i>
         </div>
         <h1>
             <span class="arabic">نظام إدارة المختبرات البيطرية</span>
             <span class="english translated">Veterinary Laboratory Management System</span>
         </h1>
         <p class="mt-3">
-            <span class="arabic">نظام متكامل لإدارة عينات وفحوصات المختبرات البيطرية</span>
-            <span class="english translated">Integrated system for managing veterinary lab samples and tests</span>
+            <span class="arabic">نظام متكامل لإدارة عينات وفحوصات المختبرات البيطرية للحيوانات الزراعية</span>
+            <span class="english translated">Integrated system for managing veterinary lab samples and tests for farm animals</span>
         </p>
-        <button id="startBtn" class="btn btn-light btn-lg mt-4">
+        <button id="startBtn" class="btn btn-light btn-lg mt-4 px-4 py-2">
             <span class="arabic">بدء النظام <i class="fas fa-arrow-left ms-2"></i></span>
             <span class="english translated">Start System <i class="fas fa-arrow-right ms-2"></i></span>
         </button>
@@ -374,7 +543,7 @@
                     <span class="english translated">Login</span>
                 </h3>
                 <p>
-                    <span class="arabic">الرجاء إدخال رقمك الوظيفي للدخول إلى النظام</span>
+                    <span class="arabic">الرجاء إدخال رقمك الوظيفي للوصول إلى النظام</span>
                     <span class="english translated">Please enter your employee ID to access the system</span>
                 </p>
             </div>
@@ -389,17 +558,7 @@
                         data-ar-placeholder="أدخل رقمك الوظيفي" 
                         data-en-placeholder="Enter your employee ID" required>
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">
-                        <span class="arabic">كلمة المرور</span>
-                        <span class="english translated">Password</span>
-                    </label>
-                    <input type="password" class="form-control" id="password" 
-                        placeholder="أدخل كلمة المرور" 
-                        data-ar-placeholder="أدخل كلمة المرور" 
-                        data-en-placeholder="Enter your password" required>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">
+                <button type="submit" class="btn btn-primary w-100 py-2">
                     <i class="fas fa-sign-in-alt ms-2"></i> 
                     <span class="arabic">دخول</span>
                     <span class="english translated">Login</span>
@@ -414,7 +573,7 @@
         <div class="sidebar">
             <div class="sidebar-header">
                 <h3>
-                    <i class="fas fa-paw me-2"></i> 
+                    <i class="fas fa-flask me-2"></i> 
                     <span class="arabic">المختبر البيطري</span>
                     <span class="english translated">Vet Lab</span>
                 </h3>
@@ -468,8 +627,8 @@
                     <div class="card-header">
                         <h5 class="card-title mb-0">
                             <i class="fas fa-plus-circle me-2"></i> 
-                            <span class="arabic">نظام إدارة المختبرات</span>
-                            <span class="english translated">Laboratory Management System</span>
+                            <span class="arabic">إدخال بيانات العينات</span>
+                            <span class="english translated">Sample Data Entry</span>
                         </h5>
                     </div>
                     <div class="card-body">
@@ -510,18 +669,22 @@
                                             <span class="english translated">Select Animal Type</span>
                                         </option>
                                         <option value="خروف">
+                                            <i class="fas fa-sheep animal-icon"></i>
                                             <span class="arabic">خروف</span>
                                             <span class="english translated">Sheep</span>
                                         </option>
                                         <option value="ماعز">
+                                            <i class="fas fa-goat animal-icon"></i>
                                             <span class="arabic">ماعز</span>
                                             <span class="english translated">Goat</span>
                                         </option>
                                         <option value="بقر">
+                                            <i class="fas fa-cow animal-icon"></i>
                                             <span class="arabic">بقر</span>
                                             <span class="english translated">Cow</span>
                                         </option>
                                         <option value="جمل">
+                                            <i class="fas fa-horse animal-icon"></i>
                                             <span class="arabic">جمل</span>
                                             <span class="english translated">Camel</span>
                                         </option>
@@ -881,11 +1044,8 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>ADMIN-001</td>
-                                                <td>
-                                                    <span class="arabic">مسؤول النظام</span>
-                                                    <span class="english translated">System Admin</span>
-                                                </td>
+                                                <td>70062</td>
+                                                <td>مصعب محمد</td>
                                                 <td><span class="badge bg-danger">
                                                     <span class="arabic">مدير</span>
                                                     <span class="english translated">Admin</span>
@@ -899,48 +1059,8 @@
                                                     <span class="english translated">Active</span>
                                                 </span></td>
                                                 <td>
-                                                    <button class="btn btn-sm btn-outline-primary me-1"><i class="fas fa-edit"></i></button>
-                                                    <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>TECH-101</td>
-                                                <td>
-                                                    <span class="arabic">فني مختبر</span>
-                                                    <span class="english translated">Lab Technician</span>
-                                                </td>
-                                                <td><span class="badge bg-primary">
-                                                    <span class="arabic">فني</span>
-                                                    <span class="english translated">Technician</span>
-                                                </span></td>
-                                                <td>الرياض / Riyadh</td>
-                                                <td><span class="badge bg-success">
-                                                    <span class="arabic">نشط</span>
-                                                    <span class="english translated">Active</span>
-                                                </span></td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-outline-primary me-1"><i class="fas fa-edit"></i></button>
-                                                    <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>TECH-102</td>
-                                                <td>
-                                                    <span class="arabic">فني مختبر 2</span>
-                                                    <span class="english translated">Lab Technician 2</span>
-                                                </td>
-                                                <td><span class="badge bg-primary">
-                                                    <span class="arabic">فني</span>
-                                                    <span class="english translated">Technician</span>
-                                                </span></td>
-                                                <td>جدة / Jeddah</td>
-                                                <td><span class="badge bg-secondary">
-                                                    <span class="arabic">غير نشط</span>
-                                                    <span class="english translated">Inactive</span>
-                                                </span></td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-outline-primary me-1"><i class="fas fa-edit"></i></button>
-                                                    <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                                    <button class="btn btn-sm btn-outline-primary me-1 edit-user"><i class="fas fa-edit"></i></button>
+                                                    <button class="btn btn-sm btn-outline-danger delete-user" disabled><i class="fas fa-trash"></i></button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -972,15 +1092,15 @@
                                                 <ul class="list-group" id="locationsList">
                                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                                         الرياض / Riyadh
-                                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-outline-danger delete-location"><i class="fas fa-trash"></i></button>
                                                     </li>
                                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                                         جدة / Jeddah
-                                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-outline-danger delete-location"><i class="fas fa-trash"></i></button>
                                                     </li>
                                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                                         الدمام / Dammam
-                                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-outline-danger delete-location"><i class="fas fa-trash"></i></button>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -1009,32 +1129,32 @@
                                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                                         <span class="arabic">مسحة سطح</span>
                                                         <span class="english translated">Surface Swab</span>
-                                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-outline-danger delete-sample-type"><i class="fas fa-trash"></i></button>
                                                     </li>
                                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                                         <span class="arabic">مسحة</span>
                                                         <span class="english translated">Swab</span>
-                                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-outline-danger delete-sample-type"><i class="fas fa-trash"></i></button>
                                                     </li>
                                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                                         <span class="arabic">دم</span>
                                                         <span class="english translated">Blood</span>
-                                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-outline-danger delete-sample-type"><i class="fas fa-trash"></i></button>
                                                     </li>
                                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                                         <span class="arabic">شحم</span>
                                                         <span class="english translated">Fat</span>
-                                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-outline-danger delete-sample-type"><i class="fas fa-trash"></i></button>
                                                     </li>
                                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                                         <span class="arabic">لحم ذبيحة</span>
                                                         <span class="english translated">Meat</span>
-                                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-outline-danger delete-sample-type"><i class="fas fa-trash"></i></button>
                                                     </li>
                                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                                         <span class="arabic">أخرى</span>
                                                         <span class="english translated">Other</span>
-                                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-outline-danger delete-sample-type"><i class="fas fa-trash"></i></button>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -1063,22 +1183,22 @@
                                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                                         <span class="arabic">اختبار بروسيلا RBT</span>
                                                         <span class="english translated">Brucella RBT Test</span>
-                                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-outline-danger delete-test-type"><i class="fas fa-trash"></i></button>
                                                     </li>
                                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                                         <span class="arabic">اختبار يرقان</span>
                                                         <span class="english translated">Jaundice Test</span>
-                                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-outline-danger delete-test-type"><i class="fas fa-trash"></i></button>
                                                     </li>
                                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                                         <span class="arabic">تزريع</span>
                                                         <span class="english translated">Culture</span>
-                                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-outline-danger delete-test-type"><i class="fas fa-trash"></i></button>
                                                     </li>
                                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                                         <span class="arabic">رائحة</span>
                                                         <span class="english translated">Smell Test</span>
-                                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-outline-danger delete-test-type"><i class="fas fa-trash"></i></button>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -1109,17 +1229,17 @@
                                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                                         <span class="arabic">موجبة</span>
                                                         <span class="english translated">Positive</span>
-                                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-outline-danger delete-test-result"><i class="fas fa-trash"></i></button>
                                                     </li>
                                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                                         <span class="arabic">سلبية</span>
                                                         <span class="english translated">Negative</span>
-                                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-outline-danger delete-test-result"><i class="fas fa-trash"></i></button>
                                                     </li>
                                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                                         <span class="arabic">مشكوك يجب اجراء اختبار تأكيدي</span>
                                                         <span class="english translated">Suspicious (needs confirmation)</span>
-                                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-outline-danger delete-test-result"><i class="fas fa-trash"></i></button>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -1146,11 +1266,11 @@
                                                         <span class="english translated">Primary Color</span>
                                                     </label>
                                                     <div class="d-flex">
-                                                        <div class="color-option me-2" data-color="#2c786c" style="background-color: #2c786c; width: 30px; height: 30px; border-radius: 50%; cursor: pointer;"></div>
-                                                        <div class="color-option me-2" data-color="#3a86ff" style="background-color: #3a86ff; width: 30px; height: 30px; border-radius: 50%; cursor: pointer;"></div>
-                                                        <div class="color-option me-2" data-color="#8338ec" style="background-color: #8338ec; width: 30px; height: 30px; border-radius: 50%; cursor: pointer;"></div>
-                                                        <div class="color-option me-2" data-color="#ff006e" style="background-color: #ff006e; width: 30px; height: 30px; border-radius: 50%; cursor: pointer;"></div>
-                                                        <div class="color-option" data-color="#fb5607" style="background-color: #fb5607; width: 30px; height: 30px; border-radius: 50%; cursor: pointer;"></div>
+                                                        <div class="color-option me-2" data-color="#3a7d7d" style="background-color: #3a7d7d; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid #fff;"></div>
+                                                        <div class="color-option me-2" data-color="#4a8c8c" style="background-color: #4a8c8c; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid #fff;"></div>
+                                                        <div class="color-option me-2" data-color="#5a9c9c" style="background-color: #5a9c9c; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid #fff;"></div>
+                                                        <div class="color-option me-2" data-color="#6aacac" style="background-color: #6aacac; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid #fff;"></div>
+                                                        <div class="color-option" data-color="#7abcbc" style="background-color: #7abcbc; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid #fff;"></div>
                                                     </div>
                                                 </div>
                                                 
@@ -1458,11 +1578,15 @@
             ];
 
             let currentSampleId = 4; // Starting from 4 because we have 3 sample entries
-            let currentUser = {
-                name: 'مسؤول النظام / System Admin',
-                id: 'ADMIN-001',
-                role: 'admin'
-            };
+            let currentUser = null;
+
+            // Check if user is already logged in from localStorage
+            const savedUser = localStorage.getItem('currentUser');
+            const savedScreen = localStorage.getItem('currentScreen');
+            
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+            }
 
             // DOM elements
             const welcomeScreen = document.getElementById('welcomeScreen');
@@ -1513,6 +1637,25 @@
             initApp();
 
             function initApp() {
+                // Check if user is already logged in
+                if (currentUser) {
+                    welcomeScreen.classList.add('d-none');
+                    loginScreen.classList.add('d-none');
+                    dashboard.classList.remove('d-none');
+                    
+                    // Update user info
+                    loggedInUserName.textContent = currentUser.name;
+                    loggedInUserId.innerHTML = `<span class="arabic">رقم الوظيفي:</span><span class="english translated">Employee ID:</span> ${currentUser.id}`;
+                    
+                    // Show the saved screen or default to data entry
+                    showScreen(savedScreen || 'dataEntry');
+                } else {
+                    // Show welcome screen by default
+                    welcomeScreen.classList.remove('d-none');
+                    loginScreen.classList.add('d-none');
+                    dashboard.classList.add('d-none');
+                }
+
                 // Update date and time
                 updateDateTime();
                 setInterval(updateDateTime, 1000);
@@ -1531,6 +1674,9 @@
                             const screen = item.getAttribute('data-screen');
                             showScreen(screen);
                             setActiveMenuItem(item);
+                            
+                            // Save current screen to localStorage
+                            localStorage.setItem('currentScreen', screen);
                         }
                     });
                 });
@@ -1556,6 +1702,59 @@
                 
                 languageSwitcherButtons.forEach(button => {
                     button.addEventListener('click', switchLanguage);
+                });
+
+                // Disable delete buttons for the admin user
+                document.querySelectorAll('.delete-user').forEach(btn => {
+                    btn.disabled = true;
+                });
+
+                // Add event listeners for delete buttons
+                document.querySelectorAll('.delete-location').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        if (confirm(document.documentElement.lang === 'ar' ? 
+                            'هل أنت متأكد من حذف هذا الموقع؟' : 
+                            'Are you sure you want to delete this location?')) {
+                            this.parentElement.remove();
+                        }
+                    });
+                });
+
+                document.querySelectorAll('.delete-sample-type').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        if (confirm(document.documentElement.lang === 'ar' ? 
+                            'هل أنت متأكد من حذف نوع العينة هذا؟' : 
+                            'Are you sure you want to delete this sample type?')) {
+                            this.parentElement.remove();
+                        }
+                    });
+                });
+
+                document.querySelectorAll('.delete-test-type').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        if (confirm(document.documentElement.lang === 'ar' ? 
+                            'هل أنت متأكد من حذف نوع الاختبار هذا؟' : 
+                            'Are you sure you want to delete this test type?')) {
+                            this.parentElement.remove();
+                        }
+                    });
+                });
+
+                document.querySelectorAll('.delete-test-result').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        if (confirm(document.documentElement.lang === 'ar' ? 
+                            'هل أنت متأكد من حذف نتيجة الاختبار هذه؟' : 
+                            'Are you sure you want to delete this test result?')) {
+                            this.parentElement.remove();
+                        }
+                    });
+                });
+
+                // Edit user button
+                document.querySelector('.edit-user').addEventListener('click', function() {
+                    alert(document.documentElement.lang === 'ar' ? 
+                        'يمكنك تعديل بيانات المستخدم هنا' : 
+                        'You can edit user data here');
                 });
 
                 // Populate reports table
@@ -1584,24 +1783,17 @@
             function handleLogin(e) {
                 e.preventDefault();
                 const employeeId = document.getElementById('employeeId').value;
-                const password = document.getElementById('password').value;
                 
-                // Simple validation (in a real app, this would be more secure)
-                if (employeeId && password) {
-                    // Set current user (in a real app, you'd verify credentials)
-                    if (employeeId === 'ADMIN-001') {
-                        currentUser = {
-                            name: document.documentElement.lang === 'ar' ? 'مسؤول النظام' : 'System Admin',
-                            id: employeeId,
-                            role: 'admin'
-                        };
-                    } else {
-                        currentUser = {
-                            name: document.documentElement.lang === 'ar' ? 'فني مختبر' : 'Lab Technician',
-                            id: employeeId,
-                            role: 'technician'
-                        };
-                    }
+                // Only allow login with employee ID 70062
+                if (employeeId === '70062') {
+                    currentUser = {
+                        name: 'مصعب محمد',
+                        id: employeeId,
+                        role: 'admin'
+                    };
+                    
+                    // Save user to localStorage
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
                     
                     loggedInUserName.textContent = currentUser.name;
                     loggedInUserId.innerHTML = `<span class="arabic">رقم الوظيفي:</span><span class="english translated">Employee ID:</span> ${currentUser.id}`;
@@ -1609,12 +1801,13 @@
                     loginScreen.classList.add('d-none');
                     dashboard.classList.remove('d-none');
                     
-                    // Show data entry screen by default
+                    // Show data entry screen by default and save to localStorage
                     showScreen('dataEntry');
+                    localStorage.setItem('currentScreen', 'dataEntry');
                 } else {
                     alert(document.documentElement.lang === 'ar' ? 
-                        'الرجاء إدخال رقم الوظيفي وكلمة المرور' : 
-                        'Please enter employee ID and password');
+                        'رقم الوظيفي غير صحيح. الرجاء استخدام رقم 70062' : 
+                        'Invalid employee ID. Please use 70062');
                 }
             }
 
@@ -1624,11 +1817,15 @@
                     'Are you sure you want to logout?';
                 
                 if (confirm(message)) {
+                    // Clear user from localStorage
+                    localStorage.removeItem('currentUser');
+                    localStorage.removeItem('currentScreen');
+                    
                     dashboard.classList.add('d-none');
-                    loginScreen.classList.remove('d-none');
-                    loginScreen.classList.add('d-flex');
+                    welcomeScreen.classList.remove('d-none');
                     document.getElementById('employeeId').value = '';
-                    document.getElementById('password').value = '';
+                    
+                    currentUser = null;
                 }
             }
 
@@ -1726,6 +1923,7 @@
                 
                 // Show barcode screen
                 showScreen('barcode');
+                localStorage.setItem('currentScreen', 'barcode');
             }
 
             function printBarcode() {
@@ -1827,11 +2025,20 @@
                     const li = document.createElement('li');
                     li.className = 'list-group-item d-flex justify-content-between align-items-center';
                     li.innerHTML = `
-                        ${document.documentElement.lang === 'ar' ? location : location}
-                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                        ${location}
+                        <button class="btn btn-sm btn-outline-danger delete-location"><i class="fas fa-trash"></i></button>
                     `;
                     locationsList.appendChild(li);
                     newLocation.value = '';
+                    
+                    // Add event listener for the new delete button
+                    li.querySelector('.delete-location').addEventListener('click', function() {
+                        if (confirm(document.documentElement.lang === 'ar' ? 
+                            'هل أنت متأكد من حذف هذا الموقع؟' : 
+                            'Are you sure you want to delete this location?')) {
+                            li.remove();
+                        }
+                    });
                 }
             }
 
@@ -1841,11 +2048,20 @@
                     const li = document.createElement('li');
                     li.className = 'list-group-item d-flex justify-content-between align-items-center';
                     li.innerHTML = `
-                        ${document.documentElement.lang === 'ar' ? sampleType : sampleType}
-                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                        ${sampleType}
+                        <button class="btn btn-sm btn-outline-danger delete-sample-type"><i class="fas fa-trash"></i></button>
                     `;
                     sampleTypesList.appendChild(li);
                     newSampleType.value = '';
+                    
+                    // Add event listener for the new delete button
+                    li.querySelector('.delete-sample-type').addEventListener('click', function() {
+                        if (confirm(document.documentElement.lang === 'ar' ? 
+                            'هل أنت متأكد من حذف نوع العينة هذا؟' : 
+                            'Are you sure you want to delete this sample type?')) {
+                            li.remove();
+                        }
+                    });
                 }
             }
 
@@ -1855,11 +2071,20 @@
                     const li = document.createElement('li');
                     li.className = 'list-group-item d-flex justify-content-between align-items-center';
                     li.innerHTML = `
-                        ${document.documentElement.lang === 'ar' ? testType : testType}
-                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                        ${testType}
+                        <button class="btn btn-sm btn-outline-danger delete-test-type"><i class="fas fa-trash"></i></button>
                     `;
                     testTypesList.appendChild(li);
                     newTestType.value = '';
+                    
+                    // Add event listener for the new delete button
+                    li.querySelector('.delete-test-type').addEventListener('click', function() {
+                        if (confirm(document.documentElement.lang === 'ar' ? 
+                            'هل أنت متأكد من حذف نوع الاختبار هذا؟' : 
+                            'Are you sure you want to delete this test type?')) {
+                            li.remove();
+                        }
+                    });
                 }
             }
 
@@ -1869,11 +2094,20 @@
                     const li = document.createElement('li');
                     li.className = 'list-group-item d-flex justify-content-between align-items-center';
                     li.innerHTML = `
-                        ${document.documentElement.lang === 'ar' ? testResult : testResult}
-                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                        ${testResult}
+                        <button class="btn btn-sm btn-outline-danger delete-test-result"><i class="fas fa-trash"></i></button>
                     `;
                     testResultsList.appendChild(li);
                     newTestResult.value = '';
+                    
+                    // Add event listener for the new delete button
+                    li.querySelector('.delete-test-result').addEventListener('click', function() {
+                        if (confirm(document.documentElement.lang === 'ar' ? 
+                            'هل أنت متأكد من حذف نتيجة الاختبار هذه؟' : 
+                            'Are you sure you want to delete this test result?')) {
+                            li.remove();
+                        }
+                    });
                 }
             }
 
@@ -1923,11 +2157,7 @@
                     
                     // Update current user name display
                     if (currentUser) {
-                        if (currentUser.id === 'ADMIN-001') {
-                            loggedInUserName.textContent = lang === 'ar' ? 'مسؤول النظام' : 'System Admin';
-                        } else {
-                            loggedInUserName.textContent = lang === 'ar' ? 'فني مختبر' : 'Lab Technician';
-                        }
+                        loggedInUserName.textContent = currentUser.name;
                     }
                 }
                 
@@ -1970,11 +2200,7 @@
                 
                 // Update current user name display
                 if (currentUser) {
-                    if (currentUser.id === 'ADMIN-001') {
-                        loggedInUserName.textContent = lang === 'ar' ? 'مسؤول النظام' : 'System Admin';
-                    } else {
-                        loggedInUserName.textContent = lang === 'ar' ? 'فني مختبر' : 'Lab Technician';
-                    }
+                    loggedInUserName.textContent = currentUser.name;
                 }
             }
 
